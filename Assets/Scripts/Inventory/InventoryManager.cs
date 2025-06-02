@@ -6,12 +6,13 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
 
     public List<InventorySlot> slots;
-
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
+
     private void Awake()
     {
         Instance = this;
     }
+
     public void AddItem(ItemData data)
     {
         // Check if item is stackable and already exists

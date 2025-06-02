@@ -9,4 +9,7 @@ public class InventoryItem
         this.data = data;
         this.quantity = quantity;
     }
+
+    public bool IsWeapon => data is WeaponData;
+    public WeaponData AsWeapon => data as WeaponData;
 }

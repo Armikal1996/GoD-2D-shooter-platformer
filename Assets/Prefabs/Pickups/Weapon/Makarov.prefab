@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277830868930891922}
+  - component: {fileID: 8702823221755762419}
   - component: {fileID: 3277830868930891885}
   - component: {fileID: 3277830868930891923}
   - component: {fileID: 3277830868930891920}
-  - component: {fileID: 3277830868930891921}
   m_Layer: 0
-  m_Name: MilitaryHelmet
-  m_TagString: Untagged
+  m_Name: Makarov
+  m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +35,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8702823221755762419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3277830868930891884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb21c55d6f96df42971dddeeb402007, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponToGive: {fileID: 11400000, guid: 67525f1e64b62d44f9198ec7dc2be397, type: 2}
 --- !u!212 &3277830868930891885
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1aa8d4e1c6a8e934595f9ab61f2bf8aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1b4696d341b6ec443b4e499361de0675, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,9 +113,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.05, y: 0.02}
   serializedVersion: 2
-  m_Radius: 0.51
+  m_Radius: 0.39
 --- !u!50 &3277830868930891920
 Rigidbody2D:
   serializedVersion: 4
@@ -124,16 +137,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3277830868930891921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3277830868930891884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e75e212e2e9b54eb6a1aaec7af2622, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 96015f66fb4129f489b1bbec1132071e, type: 2}
