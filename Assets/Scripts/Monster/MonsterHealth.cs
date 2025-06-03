@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 public class MonsterHealth : MonoBehaviour
 {
-    public float maxHealth = 100f;
-    public GameObject itemDropPrefab;
-    public Image healthBar;
+    public float maxHealth = 10f;
+    public Image[] healthbars;
+    public GameObject itemDropPrefab; // Assign in Inspector
 
     private float currentHealth;
     private Monster monster;
@@ -14,14 +14,13 @@ public class MonsterHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         monster = GetComponent<Monster>();
-        UpdateHealthBar();
+        UpdateHealthBars();
     }
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-        UpdateHealthBar();
-        Debug.Log(currentHealth);
+        currentHealth = Mathf.Max(0, currentHealth - amount);
+        UpdateHealthBars();
 
         if (currentHealth <= 0)
         {
@@ -29,19 +28,19 @@ public class MonsterHealth : MonoBehaviour
         }
     }
 
-    void UpdateHealthBar()
+    void UpdateHealthBars()
     {
-        if (healthBar != null)
-            healthBar.fillAmount = currentHealth / maxHealth;
+        for (int i = 0; i < healthbars.Length; i++)
+            healthbars[i].enabled = (i < currentHealth); // Show only active hearts
     }
 
     void Die()
     {
         monster.Die();
 
+        Destroy(gameObject, 2f);
+
         if (itemDropPrefab != null)
             Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
-
-        Destroy(gameObject, 0.5f); // Allow animation to settle
     }
 }

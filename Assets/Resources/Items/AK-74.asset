@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24d82eae0af9b2b4990c99aa42762e4c, type: 3}
-  m_Name: Makarov
+  m_Name: AK-74
   m_EditorClassIdentifier: 
-  itemName: Makarov
-  icon: {fileID: 21300000, guid: 1b4696d341b6ec443b4e499361de0675, type: 3}
+  uniqueID: 04d5f55e-a8ec-4f69-8a9a-4d4e37b8205a
+  itemName: AK-74
+  icon: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
   isStackable: 0
   description: 
-  damage: 10
-  range: 8
+  damage: 2
+  range: 15
   projectilePrefab: {fileID: 6365397693544074818, guid: 02595b7cd0007314ba966674f231b088, type: 3}
-  projectileSpeed: 8
-  weaponTypeID: 1
+  projectileSpeed: 10
+  weaponTypeID: 2

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62cfbd531f59590479962cdbcb2d058c, type: 3}
   m_Name: Ammo
   m_EditorClassIdentifier: 
+  id: Ammo5.54
   itemName: Ammo5.54
   icon: {fileID: 21300000, guid: d45f0cae013abb84688afe6e4bc52845, type: 3}
   isStackable: 1
+  description: 

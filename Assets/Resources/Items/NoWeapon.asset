@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 24d82eae0af9b2b4990c99aa42762e4c, type: 3}
-  m_Name: AK-74
+  m_Name: NoWeapon
   m_EditorClassIdentifier: 
-  itemName: AK-74
-  icon: {fileID: 21300000, guid: 6532bc2c52f179142a7333cc0f5faeda, type: 3}
+  uniqueID: 87ed3c45-13b1-4a33-9845-01d5701be0ba
+  itemName: NoWeapon
+  icon: {fileID: 21300000, guid: dcea51d6065d64246aeec467afeff684, type: 3}
   isStackable: 0
   description: 
-  damage: 20
-  range: 15
-  projectilePrefab: {fileID: 6365397693544074818, guid: 02595b7cd0007314ba966674f231b088, type: 3}
-  projectileSpeed: 10
-  weaponTypeID: 2
+  damage: 1
+  range: 1.5
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 0
+  weaponTypeID: 0

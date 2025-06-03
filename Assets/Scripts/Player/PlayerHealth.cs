@@ -1,22 +1,30 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHealth = 100;
+    public int maxHealth = 10;
+    public Image[] healthbars;
+
     private int currentHealth;
-    public Image healthBar;
+    private Animator animator;
+
+    // Event that gets triggered when player dies
+    public UnityEvent OnPlayerDeath;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentHealth = maxHealth;
-        UpdateHealthBar();
+        UpdateHealthBars();
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        UpdateHealthBar();
+        currentHealth = Mathf.Max(0, currentHealth - damage);
+        UpdateHealthBars();
+        Debug.Log("player got damaged" + currentHealth);
 
         if (currentHealth <= 0)
         {
@@ -24,14 +32,19 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void UpdateHealthBar()
+    void UpdateHealthBars()
     {
-        healthBar.fillAmount = (float)currentHealth / maxHealth;
+        for (int i = 0; i < healthbars.Length; i++)
+            healthbars[i].enabled = (i < currentHealth); // Show only active hearts
     }
 
     void Die()
     {
-        // Handle player death (e.g., disable movement, play animation)
-        Debug.Log("Player Died");
+        animator.SetBool("IsDead", true);
+
+        Destroy(gameObject, 3f);
+
+        // Invoke the death event
+        OnPlayerDeath.Invoke();
     }
 }

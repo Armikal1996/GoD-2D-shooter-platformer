@@ -53,7 +53,6 @@ public class PlayerCombat : MonoBehaviour
                 monster.TakeDamage(attackDamage);
             }
         }
-        Debug.Log("melee attacked");
     }
 
     void ShootProjectile()
@@ -72,8 +71,6 @@ public class PlayerCombat : MonoBehaviour
         {
             proj.Shoot(shootDir, weapon.projectileSpeed, weapon.damage);
         }
-
-        Debug.Log("ranged attacked");
     }
 
 

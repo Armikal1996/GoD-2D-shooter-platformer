@@ -4,6 +4,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
+    public GameObject inventoryPanel;
 
     public List<InventorySlot> slots;
     private List<InventoryItem> inventoryItems = new List<InventoryItem>();
@@ -11,6 +12,9 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        inventoryItems = InventorySaveSystem.LoadInventory();
+        RefreshUI();
     }
 
     public void AddItem(ItemData data)
@@ -51,6 +55,17 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    public void ToggleBackpack()
+    {
+        if (!inventoryPanel.activeInHierarchy)
+        {
+            inventoryPanel.SetActive(true);
+        }
+        else
+            inventoryPanel.SetActive(false);
+
+    }
+
     private void RefreshUI()
     {
         for (int i = 0; i < slots.Count; i++)
@@ -65,5 +80,9 @@ public class InventoryManager : MonoBehaviour
                 slots[i].ClearSlot();
             }
         }
+    }
+    private void OnApplicationQuit()
+    {
+        InventorySaveSystem.SaveInventory(inventoryItems);
     }
 }

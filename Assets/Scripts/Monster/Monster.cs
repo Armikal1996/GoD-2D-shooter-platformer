@@ -14,62 +14,63 @@ public class Monster : MonoBehaviour
 
     private bool isDead = false;
     private bool isAttacking = false;
-    private bool isInRange = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
-
-        InvokeRepeating(nameof(CheckDistanceToPlayer), 0f, 0.2f);
     }
 
-    void FixedUpdate()
-    {
-        if (!isDead && !isAttacking && isInRange && player != null)
-        {
-            MoveTowardPlayer();
-        }
-    }
-
-    void CheckDistanceToPlayer()
+    void Update()
     {
         if (isDead || player == null) return;
 
         float distance = Vector2.Distance(transform.position, player.position);
 
+        // Attack state
         if (distance <= attackRange)
         {
             if (!isAttacking)
             {
                 isAttacking = true;
-                isInRange = true;
                 rb.velocity = Vector2.zero;
-                animator.SetBool("IsAttacking", true); // Trigger animation
+                animator.SetBool("IsAttacking", true);
             }
         }
+        // Chase state
         else if (distance <= detectionRange)
         {
-            isInRange = false;
+            isAttacking = false;
             animator.SetBool("IsAttacking", false);
+            MoveTowardPlayer();
         }
+        // Idle state
         else
         {
-            // Player out of detection range
-            isInRange = false;
             isAttacking = false;
+            rb.velocity = Vector2.zero;
             animator.SetBool("IsAttacking", false);
         }
     }
 
     void MoveTowardPlayer()
     {
-        Vector2 dir = (player.position - transform.position).normalized;
-        rb.MovePosition(rb.position + dir * moveSpeed * Time.fixedDeltaTime);
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.velocity = direction * moveSpeed;
+
+        // Flip sprite based on movement direction
+        if (direction.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (direction.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
-    // This function is called by an animation event
+    // Called by animation event
     public void OnAttackAnimationEnd()
     {
         if (player != null && Vector2.Distance(transform.position, player.position) <= attackRange)
@@ -78,12 +79,9 @@ public class Monster : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damageAmount);
-                Debug.Log("Monster damaged the player!");
             }
         }
-
         isAttacking = false;
-        animator.SetBool("IsAttacking", false);
     }
 
     public void Die()
@@ -91,5 +89,6 @@ public class Monster : MonoBehaviour
         isDead = true;
         rb.velocity = Vector2.zero;
         animator.SetBool("IsAttacking", false);
+        animator.SetBool("IsDead", true);
     }
 }
