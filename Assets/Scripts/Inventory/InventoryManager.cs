@@ -80,6 +80,7 @@ public class InventoryManager : MonoBehaviour
                 slots[i].ClearSlot();
             }
         }
+        InventorySaveSystem.SaveInventory(inventoryItems);
     }
     private void OnApplicationQuit()
     {

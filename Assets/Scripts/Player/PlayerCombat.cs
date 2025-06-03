@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerCombat : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class PlayerCombat : MonoBehaviour
 
     void ShootProjectile()
     {
+        Vector3 spawnPos = FindFirstObjectByType<PlayerCombat>().transform.position;
         WeaponData weapon = weaponHandler.currentWeapon;
 
         shootDir = new Vector2(joystick.Horizontal, joystick.Vertical).normalized;
@@ -64,7 +66,7 @@ public class PlayerCombat : MonoBehaviour
         if (weapon.projectilePrefab == null || shootDir == Vector2.zero)
             return;
 
-        GameObject bullet = Instantiate(weapon.projectilePrefab, transform.position, Quaternion.identity);
+        GameObject bullet = Instantiate(weapon.projectilePrefab, spawnPos, Quaternion.identity);
 
         Projectile proj = bullet.GetComponent<Projectile>();
         if (proj != null)

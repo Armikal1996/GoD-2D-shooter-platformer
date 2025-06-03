@@ -86,6 +86,7 @@ public class Monster : MonoBehaviour
 
     public void Die()
     {
+        FindObjectOfType<MonsterSpawner>().OnMonsterDied();
         isDead = true;
         rb.velocity = Vector2.zero;
         animator.SetBool("IsAttacking", false);
